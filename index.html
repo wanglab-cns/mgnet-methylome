@@ -97,15 +97,60 @@
 <img alt="Last commit" src="https://img.shields.io/github/last-commit/wanglab-cns/mgnet-methylome?style=flat-square" /></p>
 <h2 id="workflow">Workflow</h2>
 <p><code>FASTQ → fastp → bwa-meth → BAM merge / duplicate marking → methylation QC → CpG calls → CpG matrix → 300-bp matrix</code></p>
-<p>| Step | Analysis | Output | Status |
-| --- | --- | --- | --- | --- |
-| 01–03 | FASTQ inventory, QC and trimming | Validated, trimmed FASTQ pairs | Implemented |
-| 04–05 | hg38 alignment | Sorted and indexed BAMs per FASTQ pair | Implemented; cohort running |
-| 06 | Library merge and duplicate marking  | Duplicate-marked, indexed BAM per library; QC | Tested; additional libraries running |
-| 07 | Alignment and methylation-bias QC  | QC statistics, M-bias profiles | Initial validation underway |
-| 08 | CpG methylation extraction | Per-library CpG methylated/unmethylated counts | Planned |
-| 09 | Cross-sample CpG matrices  | CpG beta, count and coverage matrices | Planned |
-| 10 | 300-bp genomic windows | Regional beta, coverage and CpG-count matrices | Planned |</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Analysis</th>
+<th>Output</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01–03</td>
+<td>FASTQ inventory, QC and trimming</td>
+<td>Validated, trimmed FASTQ pairs</td>
+<td>Implemented</td>
+</tr>
+<tr>
+<td>04–05</td>
+<td>hg38 alignment</td>
+<td>Sorted and indexed BAMs per FASTQ pair</td>
+<td>Implemented; cohort running</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Library merge and duplicate marking</td>
+<td>Duplicate-marked, indexed BAM per library; QC</td>
+<td>Tested; additional libraries running</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Alignment and methylation-bias QC</td>
+<td>QC statistics, M-bias profiles</td>
+<td>Initial validation underway</td>
+</tr>
+<tr>
+<td>08</td>
+<td>CpG methylation extraction</td>
+<td>Per-library CpG methylated/unmethylated counts</td>
+<td>Planned</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Cross-sample CpG matrices</td>
+<td>CpG beta, count and coverage matrices</td>
+<td>Planned</td>
+</tr>
+<tr>
+<td>10</td>
+<td>300-bp genomic windows</td>
+<td>Regional beta, coverage and CpG-count matrices</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
 <p>The workflow runs on <strong>HPC4Health (H4H)</strong> using <strong>Slurm</strong>. Versions above reflect the tools identified in the current H4H workflow; <code>fastp</code> and downstream analysis-runtime versions must be recorded from the installed environment. M-bias QC must be reviewed before final CpG extraction.</p>
 <p>See <a href="docs/data.md">data processing and output specifications</a> for sample/library hierarchy, QC requirements and matrix definitions.</p>
 <h2 id="setup">Setup</h2>
@@ -172,5 +217,5 @@ pixi install
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-11-13 17:19:20.075352+00:00
+Build Date UTC : 2026-11-13 17:20:10.467738+00:00
 -->
