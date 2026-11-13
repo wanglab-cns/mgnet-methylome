@@ -12,8 +12,6 @@ A reproducible **whole-genome EM-seq analysis pipeline** for investigating DNA m
 
 ## Workflow
 
-`FASTQ → fastp → bwa-meth → BAM merge / duplicate marking → methylation QC → CpG calls → CpG matrix → 300-bp matrix`
-
 | Step | Analysis | Output | Status |
 | --- | --- | --- | --- |
 | 01–03 | FASTQ inventory, QC and trimming | Validated, trimmed FASTQ pairs | Implemented |
