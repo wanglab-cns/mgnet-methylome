@@ -14,15 +14,15 @@ A reproducible **whole-genome EM-seq analysis pipeline** for investigating DNA m
 
 `FASTQ → fastp → bwa-meth → BAM merge / duplicate marking → methylation QC → CpG calls → CpG matrix → 300-bp matrix`
 
-| Step | Analysis | Software / version | Output | Status |
+| Step | Analysis | Output | Status |
 | --- | --- | --- | --- | --- |
-| 01–03 | FASTQ inventory, QC and trimming | **fastp** (version to confirm) | Validated, trimmed FASTQ pairs | Implemented |
-| 04–05 | hg38 alignment | **bwa-meth 0.2.7**, **BWA 0.7.15**, **samtools 1.20** | Sorted and indexed BAMs per FASTQ pair | Implemented; cohort running |
-| 06 | Library merge and duplicate marking | **samtools 1.20** (`merge`, `sort`, `fixmate`, `markdup`) | Duplicate-marked, indexed BAM per library; QC | Tested; additional libraries running |
-| 07 | Alignment and methylation-bias QC | **samtools 1.20**, **MethylDackel 0.6.1** | QC statistics, M-bias profiles | Initial validation underway |
-| 08 | CpG methylation extraction | **MethylDackel 0.6.1** | Per-library CpG methylated/unmethylated counts | Planned |
-| 09 | Cross-sample CpG matrices | Python/R (versions to confirm) | CpG beta, count and coverage matrices | Planned |
-| 10 | 300-bp genomic windows | Python/R (versions to confirm) | Regional beta, coverage and CpG-count matrices | Planned |
+| 01–03 | FASTQ inventory, QC and trimming | Validated, trimmed FASTQ pairs | Implemented |
+| 04–05 | hg38 alignment | Sorted and indexed BAMs per FASTQ pair | Implemented; cohort running |
+| 06 | Library merge and duplicate marking  | Duplicate-marked, indexed BAM per library; QC | Tested; additional libraries running |
+| 07 | Alignment and methylation-bias QC  | QC statistics, M-bias profiles | Initial validation underway |
+| 08 | CpG methylation extraction | Per-library CpG methylated/unmethylated counts | Planned |
+| 09 | Cross-sample CpG matrices  | CpG beta, count and coverage matrices | Planned |
+| 10 | 300-bp genomic windows | Regional beta, coverage and CpG-count matrices | Planned |
 
 The workflow runs on **HPC4Health (H4H)** using **Slurm**. Versions above reflect the tools identified in the current H4H workflow; `fastp` and downstream analysis-runtime versions must be recorded from the installed environment. M-bias QC must be reviewed before final CpG extraction.
 
