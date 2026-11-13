@@ -24,7 +24,7 @@ A reproducible **whole-genome EM-seq analysis pipeline** for investigating DNA m
 
 The workflow runs on **HPC4Health (H4H)** using **Slurm**. Versions above reflect the tools identified in the current H4H workflow; `fastp` and downstream analysis-runtime versions must be recorded from the installed environment. M-bias QC must be reviewed before final CpG extraction.
 
-See [data processing and output specifications](docs/data.md) for sample/library hierarchy, QC requirements and matrix definitions.
+See [data processing and output specifications](data/procdata/README.md) for sample/library hierarchy, QC requirements and matrix definitions.
 
 ## Setup
 
