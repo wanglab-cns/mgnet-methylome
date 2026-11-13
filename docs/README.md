@@ -1,40 +1,37 @@
 # Methylome Signatures for PRRT Response in GEP-NETs
 
-**Authors:** [Farnoosh Abbas Aghababazadeh](https://github.com/RibaA)
+**Author:** [Farnoosh Abbas Aghababazadeh](https://github.com/RibaA)  
+**Contact:** [farnoosh.abbasaghababazadeh@uhn.ca](mailto:farnoosh.abbasaghababazadeh@uhn.ca)
 
-**Contact:** [farnoosh.abbasaghababazadeh@uhn.ca](mailto:bhklab.farnooshabbasaghababazadeh@gmail.com)
+A reproducible **whole-genome EM-seq analysis pipeline** for investigating DNA methylation signatures associated with response to peptide receptor radionuclide therapy (PRRT) in gastroenteropancreatic neuroendocrine tumors (GEP-NETs).
 
-**Description:** EM-seq analysis and methylation biomarker discovery to predict PRRT response in gastroenteropancreatic neuroendocrine tumors.
-
---------------------------------------
-
-[![pixi-badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json&style=flat-square)](https://github.com/prefix-dev/pixi)
+[![Pixi](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json&style=flat-square)](https://pixi.sh/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json&style=flat-square)](https://github.com/astral-sh/ruff)
-[![Built with Material for MkDocs](https://img.shields.io/badge/mkdocs--material-gray?logo=materialformkdocs&style=flat-square)](https://github.com/squidfunk/mkdocs-material)
+[![MkDocs Material](https://img.shields.io/badge/docs-MkDocs%20Material-gray?logo=materialformkdocs&style=flat-square)](https://squidfunk.github.io/mkdocs-material/)
+![Last commit](https://img.shields.io/github/last-commit/wanglab-cns/mgnet-methylome?style=flat-square)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/RibaA/mgnet-methylome?style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/RibaA/mgnet-methylome?style=flat-square)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/RibaA/mgnet-methylome?style=flat-square)
-![GitHub contributors](https://img.shields.io/github/contributors/RibaA/mgnet-methylome?style=flat-square)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/RibaA/mgnet-methylome?style=flat-square)
+## Workflow
 
-## Set Up
+`FASTQ → fastp → bwa-meth alignment → BAM merging / duplicate marking → methylation QC → CpG calls → CpG matrix → 300-bp methylation matrix`
 
-### Prerequisites
+The pipeline uses **Slurm** for parallel processing on HPC4Health (H4H). Methylation-bias QC is reviewed before final CpG extraction. The final matrices support exploratory biomarker and PRRT-response analyses.
 
-Pixi is required to run this project.
-If you haven't installed it yet, [follow these instructions](https://pixi.sh/latest/)
+## Setup
 
-### Installation
-
-1. Clone this repository to your local machine
-2. Navigate to the project directory
-3. Set up the environment using Pixi:
+This repository uses [Pixi](https://pixi.sh/latest/) for its declared environment:
 
 ```bash
+git clone https://github.com/wanglab-cns/mgnet-methylome.git
+cd mgnet-methylome
 pixi install
 ```
 
-## Documentation
+Cluster-specific tools and reference files may require H4H modules or separately staged resources; see the repository documentation. Installing Pixi alone does not necessarily install the cluster's bioinformatics tools.
 
-Click [here](https://RibaA.github.io/mgnet-methylome) to view the full documentation.
+## Data and documentation
+
+- [Data organization, metadata, QC and outputs](docs/data.md)
+- [Repository documentation](docs/) — workflow details and H4H instructions
+
+**Privacy:** Do not commit patient-level clinical metadata, controlled sequencing files, BAMs, or large analysis results to GitHub.
+
