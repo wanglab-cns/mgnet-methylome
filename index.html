@@ -96,8 +96,71 @@
 <a href="https://squidfunk.github.io/mkdocs-material/"><img alt="MkDocs Material" src="https://img.shields.io/badge/docs-MkDocs%20Material-gray?logo=materialformkdocs&amp;style=flat-square" /></a>
 <img alt="Last commit" src="https://img.shields.io/github/last-commit/wanglab-cns/mgnet-methylome?style=flat-square" /></p>
 <h2 id="workflow">Workflow</h2>
-<p><code>FASTQ → fastp → bwa-meth alignment → BAM merging / duplicate marking → methylation QC → CpG calls → CpG matrix → 300-bp methylation matrix</code></p>
-<p>The pipeline uses <strong>Slurm</strong> for parallel processing on HPC4Health (H4H). Methylation-bias QC is reviewed before final CpG extraction. The final matrices support exploratory biomarker and PRRT-response analyses.</p>
+<p><code>FASTQ → fastp → bwa-meth → BAM merge / duplicate marking → methylation QC → CpG calls → CpG matrix → 300-bp matrix</code></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Analysis</th>
+<th>Software / version</th>
+<th>Output</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01–03</td>
+<td>FASTQ inventory, QC and trimming</td>
+<td><strong>fastp</strong> (version to confirm)</td>
+<td>Validated, trimmed FASTQ pairs</td>
+<td>Implemented</td>
+</tr>
+<tr>
+<td>04–05</td>
+<td>hg38 alignment</td>
+<td><strong>bwa-meth 0.2.7</strong>, <strong>BWA 0.7.15</strong>, <strong>samtools 1.20</strong></td>
+<td>Sorted and indexed BAMs per FASTQ pair</td>
+<td>Implemented; cohort running</td>
+</tr>
+<tr>
+<td>06</td>
+<td>Library merge and duplicate marking</td>
+<td><strong>samtools 1.20</strong> (<code>merge</code>, <code>sort</code>, <code>fixmate</code>, <code>markdup</code>)</td>
+<td>Duplicate-marked, indexed BAM per library; QC</td>
+<td>Tested; additional libraries running</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Alignment and methylation-bias QC</td>
+<td><strong>samtools 1.20</strong>, <strong>MethylDackel 0.6.1</strong></td>
+<td>QC statistics, M-bias profiles</td>
+<td>Initial validation underway</td>
+</tr>
+<tr>
+<td>08</td>
+<td>CpG methylation extraction</td>
+<td><strong>MethylDackel 0.6.1</strong></td>
+<td>Per-library CpG methylated/unmethylated counts</td>
+<td>Planned</td>
+</tr>
+<tr>
+<td>09</td>
+<td>Cross-sample CpG matrices</td>
+<td>Python/R (versions to confirm)</td>
+<td>CpG beta, count and coverage matrices</td>
+<td>Planned</td>
+</tr>
+<tr>
+<td>10</td>
+<td>300-bp genomic windows</td>
+<td>Python/R (versions to confirm)</td>
+<td>Regional beta, coverage and CpG-count matrices</td>
+<td>Planned</td>
+</tr>
+</tbody>
+</table>
+<p>The workflow runs on <strong>HPC4Health (H4H)</strong> using <strong>Slurm</strong>. Versions above reflect the tools identified in the current H4H workflow; <code>fastp</code> and downstream analysis-runtime versions must be recorded from the installed environment. M-bias QC must be reviewed before final CpG extraction.</p>
+<p>See <a href="docs/data.md">data processing and output specifications</a> for sample/library hierarchy, QC requirements and matrix definitions.</p>
 <h2 id="setup">Setup</h2>
 <p>This repository uses <a href="https://pixi.sh/latest/">Pixi</a> for its declared environment:</p>
 <pre><code class="language-bash">git clone https://github.com/wanglab-cns/mgnet-methylome.git
@@ -107,10 +170,9 @@ pixi install
 <p>Cluster-specific tools and reference files may require H4H modules or separately staged resources; see the repository documentation. Installing Pixi alone does not necessarily install the cluster's bioinformatics tools.</p>
 <h2 id="data-and-documentation">Data and documentation</h2>
 <ul>
-<li><a href="docs/data.md">Data organization, metadata, QC and outputs</a></li>
-<li><a href="docs/">Repository documentation</a> — workflow details and H4H instructions</li>
+<li><a href="data/rawdata/README.md">Raw sequencing data</a></li>
+<li><a href="data/procdata/README.md">Processed data and analysis workflow</a></li>
 </ul>
-<p><strong>Privacy:</strong> Do not commit patient-level clinical metadata, controlled sequencing files, BAMs, or large analysis results to GitHub.</p>
               
             </div>
           </div><footer>
@@ -163,5 +225,5 @@ pixi install
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-11-13 17:09:57.988327+00:00
+Build Date UTC : 2026-11-13 17:17:33.744243+00:00
 -->
