@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier
+_commit: 0.14.2
+_src_path: gh:bhklab/bhklab-project-template
+author_email: bhklab.farnooshabbasaghababazadeh@gmail.com
+author_full_name: Farnoosh Abbas Aghababazadeh
+github_username: RibaA
+has_additional_authors: false
+project_description: EM-seq analysis and methylation biomarker discovery to predict
+    PRRT response in gastroenteropancreatic neuroendocrine tumors.
+project_name: Methylome Signatures for PRRT Response in GEP-NETs
+project_slug: mgnet-methylome
+publish_to_github: false
+python_version: '3.12'
+repo_location: RibaA
