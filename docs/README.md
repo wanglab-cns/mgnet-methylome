@@ -2,7 +2,7 @@
 
 **Authors:** [Farnoosh Abbas Aghababazadeh](https://github.com/RibaA)
 
-**Contact:** [bhklab.farnooshabbasaghababazadeh@gmail.com](mailto:bhklab.farnooshabbasaghababazadeh@gmail.com)
+**Contact:** [farnoosh.abbasaghababazadeh@uhn.ca](mailto:farnoosh.abbasaghababazadeh@uhn.ca)
 
 **Description:** EM-seq analysis and methylation biomarker discovery to predict PRRT response in gastroenteropancreatic neuroendocrine tumors.
 
